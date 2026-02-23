@@ -24,6 +24,8 @@ export default function RootLayout() {
                   <Stack.Screen name="(tabs)" />
                   <Stack.Screen name="exercise-picker/index" />
                   <Stack.Screen name="create-routine/index" />
+                  <Stack.Screen name="settings/index" />
+                  <Stack.Screen name="user/follows/[id]" />
                 </Stack>
               </SafeAreaView>
             </SafeAreaProvider>

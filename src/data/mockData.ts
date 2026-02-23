@@ -707,8 +707,51 @@ const WORKOUTS: Workout[] = [
 ];
 
 // ============================================
-// ROUTINES DATA
+// FOLLOWERS/FOLLOWING RELATIONSHIPS
 // ============================================
+
+export interface FollowRelationship {
+  followerId: string; // user who is following
+  followingId: string; // user who is being followed
+}
+
+export const FOLLOW_RELATIONSHIPS: FollowRelationship[] = [
+  // User 1 (alex_shred) followers and following
+  { followerId: "2", followingId: "1" }, // iron_legacy follows alex_shred
+  { followerId: "3", followingId: "1" }, // shred_mode follows alex_shred
+  { followerId: "4", followingId: "1" }, // legs_for_days follows alex_shred
+  { followerId: "5", followingId: "1" }, // bulk_king follows alex_shred
+  { followerId: "1", followingId: "2" }, // alex_shred follows iron_legacy
+  { followerId: "1", followingId: "3" }, // alex_shred follows shred_mode
+  { followerId: "1", followingId: "4" }, // alex_shred follows legs_for_days
+  { followerId: "1", followingId: "5" }, // alex_shred follows bulk_king
+
+  // User 2 (iron_legacy) followers and following
+  { followerId: "3", followingId: "2" }, // shred_mode follows iron_legacy
+  { followerId: "7", followingId: "2" }, // powerlifter_pro follows iron_legacy
+  { followerId: "2", followingId: "7" }, // iron_legacy follows powerlifter_pro
+
+  // User 3 (shred_mode) followers and following
+  { followerId: "4", followingId: "3" }, // legs_for_days follows shred_mode
+
+  // User 4 (legs_for_days) followers and following
+  { followerId: "5", followingId: "4" }, // bulk_king follows legs_for_days
+  { followerId: "4", followingId: "5" }, // legs_for_days follows bulk_king
+
+  // User 5 (bulk_king) followers and following
+  { followerId: "6", followingId: "5" }, // gym_rat_mike follows bulk_king
+  { followerId: "5", followingId: "6" }, // bulk_king follows gym_rat_mike
+
+  // User 6 (gym_rat_mike) followers and following
+  { followerId: "8", followingId: "6" }, // fit_journey follows gym_rat_mike
+  { followerId: "6", followingId: "8" }, // gym_rat_mike follows fit_journey
+
+  // User 7 (powerlifter_pro) followers and following
+  // (relationships already defined above)
+
+  // User 8 (fit_journey) followers and following
+  // (relationships already defined above)
+];
 export const ROUTINES: Routine[] = [
   {
     id: "r1",
@@ -1108,4 +1151,35 @@ export function getAllRoutines(): Routine[] {
  */
 export function addRoutine(routine: Routine): void {
   ROUTINES.push(routine);
+}
+
+/**
+ * Get followers for a user (users who follow this user)
+ */
+export function getFollowers(userId: string): User[] {
+  const followerIds = FOLLOW_RELATIONSHIPS.filter(
+    (rel) => rel.followingId === userId,
+  ).map((rel) => rel.followerId);
+
+  return followerIds.map((id) => getUserById(id)).filter(Boolean) as User[];
+}
+
+/**
+ * Get following for a user (users this user follows)
+ */
+export function getFollowing(userId: string): User[] {
+  const followingIds = FOLLOW_RELATIONSHIPS.filter(
+    (rel) => rel.followerId === userId,
+  ).map((rel) => rel.followingId);
+
+  return followingIds.map((id) => getUserById(id)).filter(Boolean) as User[];
+}
+
+/**
+ * Check if user A follows user B
+ */
+export function isFollowing(followerId: string, followingId: string): boolean {
+  return FOLLOW_RELATIONSHIPS.some(
+    (rel) => rel.followerId === followerId && rel.followingId === followingId,
+  );
 }
