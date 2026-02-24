@@ -144,8 +144,8 @@ export default function SignIn() {
       await auth.setLoggedIn();
 
       setIsLoading(false);
-      // Navigate to home after successful login
-      router.navigate("/home");
+      // Navigate to schedule after successful login
+      router.navigate("/(tabs)/schedule");
     }, 1500);
   };
 

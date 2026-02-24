@@ -12,7 +12,7 @@ export default function Ready() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.navigate("/home");
+      router.navigate("/(tabs)/schedule");
     }, 1500);
 
     return () => clearTimeout(timer);

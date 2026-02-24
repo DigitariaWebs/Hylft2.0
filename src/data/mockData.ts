@@ -970,6 +970,148 @@ export const ROUTINES: Routine[] = [
 ];
 
 // ============================================
+// SCHEDULE DATA
+// ============================================
+
+export interface ScheduledDay {
+  id: string;
+  userId: string;
+  date: string; // "YYYY-MM-DD"
+  routineId?: string;
+  notes?: string;
+  status: "completed" | "scheduled" | "rest";
+}
+
+// Dates are relative to today = 2026-02-24
+let SCHEDULE: ScheduledDay[] = [
+  // Past week (completed or rest)
+  {
+    id: "sched-1",
+    userId: "1",
+    date: "2026-02-18",
+    routineId: "r3",
+    status: "completed",
+    notes: "Felt strong, PR on squats!",
+  },
+  { id: "sched-2", userId: "1", date: "2026-02-19", status: "rest" },
+  {
+    id: "sched-3",
+    userId: "1",
+    date: "2026-02-20",
+    routineId: "r2",
+    status: "completed",
+  },
+  {
+    id: "sched-4",
+    userId: "1",
+    date: "2026-02-21",
+    routineId: "r4",
+    status: "completed",
+    notes: "Great upper body session",
+  },
+  { id: "sched-5", userId: "1", date: "2026-02-22", status: "rest" },
+  // Yesterday
+  {
+    id: "sched-6",
+    userId: "1",
+    date: "2026-02-23",
+    routineId: "r2",
+    status: "completed",
+    notes: "Back and biceps on point 💪",
+  },
+  // Today
+  {
+    id: "sched-7",
+    userId: "1",
+    date: "2026-02-24",
+    routineId: "r1",
+    status: "scheduled",
+    notes: "Heavy chest day — go for PR on bench",
+  },
+  // Tomorrow
+  { id: "sched-8", userId: "1", date: "2026-02-25", status: "rest" },
+  // Day after tomorrow
+  {
+    id: "sched-9",
+    userId: "1",
+    date: "2026-02-26",
+    routineId: "r3",
+    status: "scheduled",
+    notes: "Leg day — focus on depth",
+  },
+  // Further future
+  {
+    id: "sched-10",
+    userId: "1",
+    date: "2026-02-27",
+    routineId: "r4",
+    status: "scheduled",
+  },
+  { id: "sched-11", userId: "1", date: "2026-02-28", status: "rest" },
+  {
+    id: "sched-12",
+    userId: "1",
+    date: "2026-03-01",
+    routineId: "r1",
+    status: "scheduled",
+  },
+];
+
+export function getScheduleForDate(
+  date: string,
+  userId: string = "1",
+): ScheduledDay | undefined {
+  return SCHEDULE.find((s) => s.date === date && s.userId === userId);
+}
+
+export function getScheduleForDateRange(
+  startDate: string,
+  endDate: string,
+  userId: string = "1",
+): ScheduledDay[] {
+  return SCHEDULE.filter(
+    (s) => s.userId === userId && s.date >= startDate && s.date <= endDate,
+  ).sort((a, b) => (a.date < b.date ? -1 : 1));
+}
+
+export function updateScheduleDay(
+  date: string,
+  updates: Partial<Omit<ScheduledDay, "id" | "userId" | "date">>,
+  userId: string = "1",
+): void {
+  const idx = SCHEDULE.findIndex((s) => s.date === date && s.userId === userId);
+  if (idx !== -1) {
+    SCHEDULE[idx] = { ...SCHEDULE[idx], ...updates };
+  } else {
+    SCHEDULE.push({
+      id: `sched-${Date.now()}`,
+      userId,
+      date,
+      status: "rest",
+      ...updates,
+    });
+  }
+  _notifyScheduleListeners();
+}
+
+let _scheduleListeners: Array<() => void> = [];
+export function addScheduleListener(fn: () => void) {
+  _scheduleListeners.push(fn);
+  return () => {
+    _scheduleListeners = _scheduleListeners.filter((f) => f !== fn);
+  };
+}
+function _notifyScheduleListeners() {
+  _scheduleListeners.forEach((f) => {
+    try {
+      f();
+    } catch {
+      /* ignore */
+    }
+  });
+}
+
+// ============================================
 // HELPER FUNCTIONS
 // ============================================
 

@@ -13,8 +13,9 @@ import { useTheme } from "../../contexts/ThemeContext";
 type IconName = keyof typeof Ionicons.glyphMap;
 
 const ICON_MAP: Record<string, { default: IconName; focused: IconName }> = {
-  home: { default: "home-outline", focused: "home" },
+  home: { default: "flame-outline", focused: "flame" },
   workout: { default: "barbell-outline", focused: "barbell" },
+  schedule: { default: "calendar-outline", focused: "calendar" },
   profile: { default: "person-outline", focused: "person" },
 };
 

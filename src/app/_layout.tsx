@@ -32,6 +32,7 @@ export default function RootLayout() {
                   <Stack.Screen name="settings/terms" />
                   <Stack.Screen name="settings/privacy" />
                   <Stack.Screen name="user/follows/[id]" />
+                  <Stack.Screen name="schedule/[date]" />
                 </Stack>
               </SafeAreaView>
             </SafeAreaProvider>

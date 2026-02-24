@@ -36,15 +36,21 @@ function TabsLayoutContent() {
         }}
       >
         <Tabs.Screen
-          name="home"
+          name="schedule"
           options={{
-            title: "Home",
+            title: "Schedule",
           }}
         />
         <Tabs.Screen
           name="workout"
           options={{
             title: "Workout",
+          }}
+        />
+        <Tabs.Screen
+          name="home"
+          options={{
+            title: "Home",
           }}
         />
         <Tabs.Screen
