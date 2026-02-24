@@ -25,6 +25,12 @@ export default function RootLayout() {
                   <Stack.Screen name="exercise-picker/index" />
                   <Stack.Screen name="create-routine/index" />
                   <Stack.Screen name="settings/index" />
+                  <Stack.Screen name="settings/edit-profile" />
+                  <Stack.Screen name="settings/change-password" />
+                  <Stack.Screen name="settings/help-center" />
+                  <Stack.Screen name="settings/about" />
+                  <Stack.Screen name="settings/terms" />
+                  <Stack.Screen name="settings/privacy" />
                   <Stack.Screen name="user/follows/[id]" />
                 </Stack>
               </SafeAreaView>

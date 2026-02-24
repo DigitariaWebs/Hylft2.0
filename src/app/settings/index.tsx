@@ -405,7 +405,7 @@ export default function Settings() {
             subtitle="Change name, username, bio & avatar"
             showBorder
             showChevron
-            onPress={() => {}}
+            onPress={() => router.push("/settings/edit-profile" as any)}
             styles={styles}
             theme={theme}
           />
@@ -416,7 +416,7 @@ export default function Settings() {
             subtitle="Update your login credentials"
             showBorder
             showChevron
-            onPress={() => {}}
+            onPress={() => router.push("/settings/change-password" as any)}
             styles={styles}
             theme={theme}
           />
@@ -619,7 +619,7 @@ export default function Settings() {
             title="Help Center"
             showBorder
             showChevron
-            onPress={() => {}}
+            onPress={() => router.push("/settings/help-center" as any)}
             styles={styles}
             theme={theme}
           />
@@ -641,7 +641,7 @@ export default function Settings() {
             subtitle="Version 1.0.0"
             showBorder
             showChevron
-            onPress={() => {}}
+            onPress={() => router.push("/settings/about" as any)}
             styles={styles}
             theme={theme}
           />
@@ -651,7 +651,7 @@ export default function Settings() {
             title="Terms of Service"
             showBorder
             showChevron
-            onPress={() => {}}
+            onPress={() => router.push("/settings/terms" as any)}
             styles={styles}
             theme={theme}
           />
@@ -661,7 +661,7 @@ export default function Settings() {
             title="Privacy Policy"
             showBorder={false}
             showChevron
-            onPress={() => {}}
+            onPress={() => router.push("/settings/privacy" as any)}
             styles={styles}
             theme={theme}
           />

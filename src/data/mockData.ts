@@ -1157,22 +1157,34 @@ export function addRoutine(routine: Routine): void {
  * Get followers for a user (users who follow this user)
  */
 export function getFollowers(userId: string): User[] {
-  const followerIds = FOLLOW_RELATIONSHIPS.filter(
+  const seen = new Set<string>();
+  return FOLLOW_RELATIONSHIPS.filter(
     (rel) => rel.followingId === userId,
-  ).map((rel) => rel.followerId);
-
-  return followerIds.map((id) => getUserById(id)).filter(Boolean) as User[];
+  ).reduce<User[]>((acc, rel) => {
+    if (!seen.has(rel.followerId)) {
+      seen.add(rel.followerId);
+      const u = getUserById(rel.followerId);
+      if (u) acc.push(u);
+    }
+    return acc;
+  }, []);
 }
 
 /**
  * Get following for a user (users this user follows)
  */
 export function getFollowing(userId: string): User[] {
-  const followingIds = FOLLOW_RELATIONSHIPS.filter(
-    (rel) => rel.followerId === userId,
-  ).map((rel) => rel.followingId);
-
-  return followingIds.map((id) => getUserById(id)).filter(Boolean) as User[];
+  const seen = new Set<string>();
+  return FOLLOW_RELATIONSHIPS.filter((rel) => rel.followerId === userId).reduce<
+    User[]
+  >((acc, rel) => {
+    if (!seen.has(rel.followingId)) {
+      seen.add(rel.followingId);
+      const u = getUserById(rel.followingId);
+      if (u) acc.push(u);
+    }
+    return acc;
+  }, []);
 }
 
 /**
