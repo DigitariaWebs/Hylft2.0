@@ -170,7 +170,7 @@ const ActiveWorkoutSheet = forwardRef<BottomSheet, ActiveWorkoutSheetProps>(
       // Persist in-memory and close
       try {
         // lazy-import to avoid circulars
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
         const { addWorkout } = require("../../data/mockData");
         addWorkout(toSave);
       } catch (err) {

@@ -55,7 +55,7 @@ export default function Workout() {
   // Subscribe to in-memory workout changes so new saves show immediately
   useEffect(() => {
     // lazy-import listener helpers from mockData to avoid circular imports
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { addWorkoutsListener } = require("../../data/mockData");
     const unsub = addWorkoutsListener(() => loadData());
     return () => unsub();
@@ -75,11 +75,6 @@ export default function Workout() {
       sets: 0,
       exercises: [],
     });
-  };
-
-  const handleWorkoutSettings = () => {
-    console.log("Open settings");
-    // TODO: Show workout settings
   };
 
   return (

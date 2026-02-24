@@ -37,21 +37,6 @@ export default function AllWorkouts() {
     }, [loadData]),
   );
 
-  const getFormattedDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
-  const getDurationString = (dateString: string, duration?: number) => {
-    if (duration) return `${duration}m`;
-    // Fallback if no duration stored
-    return "45m";
-  };
-
   return (
     <View style={styles.container}>
       {/* Header */}

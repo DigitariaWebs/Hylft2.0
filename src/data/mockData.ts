@@ -1094,7 +1094,7 @@ export function updateScheduleDay(
   _notifyScheduleListeners();
 }
 
-let _scheduleListeners: Array<() => void> = [];
+let _scheduleListeners: (() => void)[] = [];
 export function addScheduleListener(fn: () => void) {
   _scheduleListeners.push(fn);
   return () => {
@@ -1215,7 +1215,7 @@ export function getWorkoutsByUserId(userId: string): Workout[] {
 /**
  * Simple listener API - notify when workouts mutates (in-memory)
  */
-let _workoutsListeners: Array<() => void> = [];
+let _workoutsListeners: (() => void)[] = [];
 export function addWorkoutsListener(fn: () => void) {
   _workoutsListeners.push(fn);
   return () => {

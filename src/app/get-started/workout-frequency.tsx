@@ -97,7 +97,7 @@ export default function WorkoutFrequency() {
 
         <Text style={styles.title}>How often do you train?</Text>
         <Text style={styles.subtitle}>
-          We'll build your weekly schedule around this
+          We&apos;ll build your weekly schedule around this
         </Text>
 
         <View style={styles.list}>

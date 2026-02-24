@@ -15,11 +15,6 @@ function TabsLayoutContent() {
     setIsExpanded(true);
   };
 
-  const handleWorkoutSettings = () => {
-    console.log("Open settings");
-    // TODO: Show workout settings
-  };
-
   return (
     <View style={{ flex: 1 }}>
       <Tabs

@@ -327,7 +327,7 @@ export default function HelpCenter() {
               size={48}
               color={theme.foreground.gray}
             />
-            <Text style={styles.noResultsText}>No results for "{search}"</Text>
+            <Text style={styles.noResultsText}>No results for &quot;{search}&quot;</Text>
           </View>
         ) : (
           filtered.map((cat) => (
@@ -361,7 +361,7 @@ export default function HelpCenter() {
           <Ionicons name="mail-outline" size={36} color={theme.primary.main} />
           <Text style={styles.contactTitle}>Still need help?</Text>
           <Text style={styles.contactSubtitle}>
-            Can't find what you're looking for? Our support team is here for
+            Can&apos;t find what you&apos;re looking for? Our support team is here for
             you.
           </Text>
           <TouchableOpacity

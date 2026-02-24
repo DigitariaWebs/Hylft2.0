@@ -15,8 +15,8 @@ export interface WorkoutExerciseEntry {
   id: string; // unique id for this entry in the workout
   exerciseId: number; // wger exercise id
   name: string;
-  muscles: Array<{ id: number; name: string; name_en: string }>;
-  equipment: Array<{ id: number; name: string }>;
+  muscles: { id: number; name: string; name_en: string }[];
+  equipment: { id: number; name: string }[];
   sets: ExerciseSet[];
   notes?: string;
   addedAt: number; // timestamp

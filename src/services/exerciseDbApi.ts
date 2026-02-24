@@ -315,7 +315,7 @@ export async function getAvailableBodyPartsExerciseDb(): Promise<string[]> {
 
     interface ApiResponse {
       success: boolean;
-      data: Array<{ name: string }>;
+      data: { name: string }[];
     }
     const result: ApiResponse = await response.json();
     const bodyParts = (result.data || []).map((item) => item.name);
@@ -339,7 +339,7 @@ export async function getAvailableEquipmentsExerciseDb(): Promise<string[]> {
 
     interface ApiResponse {
       success: boolean;
-      data: Array<{ name: string }>;
+      data: { name: string }[];
     }
     const result: ApiResponse = await response.json();
     const equipments = (result.data || []).map((item) => item.name);

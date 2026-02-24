@@ -287,4 +287,6 @@ const createStyles = (theme: Theme) =>
     },
   });
 
+ExerciseFilterSheet.displayName = 'ExerciseFilterSheet';
+
 export default ExerciseFilterSheet;

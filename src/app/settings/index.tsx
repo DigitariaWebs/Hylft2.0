@@ -256,7 +256,7 @@ export default function Settings() {
         if (en !== null) setEmailNotifs(en === "true");
         if (pa !== null) setPrivateAccount(pa === "true");
         if (hc !== null) setHealthConnect(hc === "true");
-      } catch (_) {}
+      } catch (_) {} // eslint-disable-line @typescript-eslint/no-unused-vars
     };
     load();
   }, []);
@@ -265,7 +265,7 @@ export default function Settings() {
   const save = async (key: string, value: string) => {
     try {
       await AsyncStorage.setItem(key, value);
-    } catch (_) {}
+    } catch (_) {} // eslint-disable-line @typescript-eslint/no-unused-vars
   };
 
   const togglePush = (v: boolean) => {

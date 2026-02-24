@@ -278,4 +278,6 @@ const createStyles = (theme: Theme) =>
     },
   });
 
+ExploreRoutineFilterSheet.displayName = 'ExploreRoutineFilterSheet';
+
 export default ExploreRoutineFilterSheet;

@@ -1,4 +1,4 @@
-﻿import { Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
@@ -97,7 +97,11 @@ export default function ExercisePicker() {
     async (reset = false) => {
       const targetPage = reset ? 0 : page;
       if (!reset && !hasMore) return;
-      reset ? setLoading(true) : setLoadingMore(true);
+      if (reset) {
+        setLoading(true);
+      } else {
+        setLoadingMore(true);
+      }
       try {
         const result = await fetchExercisesExerciseDb({
           page: targetPage,
